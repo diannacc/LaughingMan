@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
     squareElement.addEventListener("click", ()=>{
         alert("OMG YOU CAUGHT ME!");
     });
+
+    //#6 Prompt: If we mouse over the #square element, change it's background-color instead.
+    squareElement.addEventListener("mouseover", ()=>{
+        squareElement.dataset.oldbg = squareElement.style.backgroundColor;
+        squareElement.style.backgroundColor = getRandomColor(); //On mouseover, displays a different random color
+    });
+
+    squareElement.addEventListener("mouseout", ()=>{
+        squareElement.style.backgroundColor = squareElement.dataset.oldbg || ""; //On mouseout, resets color back to default set (red)
+    });
+
     let box = document.querySelector('#box');
 
     for(let i = 0; i<SQUARE_COUNT; i++){
@@ -60,7 +71,7 @@ function getRandomColor(){
     let r = parseInt(Math.random()*256);
     let g = parseInt(Math.random()*256);
     let b = parseInt(Math.random()*256);
-    let color = 'rgb(${r},${g},${b})';
+    let color = `rgb(${r},${g},${b})`;
     return color;
 }
 
